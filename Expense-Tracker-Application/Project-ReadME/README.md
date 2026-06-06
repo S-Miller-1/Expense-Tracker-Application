@@ -24,7 +24,7 @@ Both versions of the application include the following features:
 - Add a new expense
 - View all saved expenses
 - Filter expenses by category
-- Filter expenses by date
+- Filter expenses by date range
 - View an expense summary
 - Exit the application
 
