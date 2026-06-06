@@ -1,30 +1,45 @@
-# Python Version - Expense Tracker Application
+# Expense Tracker Application - Python Version
 
-## Overview
-
-This is the Python implementation of the Expense Tracker Application. It allows the user to add, view, filter, and summarize personal expenses through a console-based menu.
+This is the Python implementation of the Team 2 Expense Tracker Application. The program allows users to record, view, categorize, filter, and summarize personal expenses using a console-based menu.
 
 ## Features
 
-- Add an expense
+- Add a new expense
 - View all expenses
 - Filter expenses by category
-- Filter expenses by date
-- View a summary of expenses
-- Exit the application
+- Filter expenses by date range
+- View an expense summary
+- Calculate overall total expenses
+- Calculate total expenses by category
+- Validate date and amount input
 
-## Language-Specific Features Demonstrated
+## Expense Fields
 
-- Lists are used to store multiple expenses.
-- Dictionaries are used to store each expense.
-- Dynamic typing allows variables to be created without declaring a fixed type.
-- Functions are used to organize the program.
-- The datetime library is used to validate date input.
-- List comprehensions are used to filter expenses.
+Each expense includes:
+
+- Date
+- Amount
+- Category
+- Description
+
+## Language-Specific Features Used
+
+This version demonstrates Python-specific features including:
+
+- Lists to store multiple expense records
+- Dictionaries to store each expense
+- Dynamic typing
+- The `datetime` library for date validation
+- Functions to organize the program
+- List comprehensions for filtering expenses
+
+## Recent Deliverable 2 Update
+
+The date filtering feature was updated to support date range filtering. Users can now enter a start date and end date, and the program will display expenses that fall within that range.
 
 ## How to Run
 
-Open the terminal in this folder and run:
+Run the program with:
 
 ```bash
 python expense_tracker.py
