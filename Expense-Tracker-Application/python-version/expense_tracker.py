@@ -3,9 +3,9 @@ from datetime import datetime
 expenses = []
 
 
-def get_valid_date():
+def get_valid_date(prompt="Enter date (YYYY-MM-DD): "):
     while True:
-        date_text = input("Enter date (YYYY-MM-DD): ").strip()
+        date_text = input(prompt).strip()
 
         try:
             datetime.strptime(date_text, "%Y-%m-%d")
@@ -28,6 +28,15 @@ def get_valid_amount():
 
         except ValueError:
             print("Invalid amount. Please enter a valid number.")
+
+
+def print_expense(expense, index):
+    print(
+        f"{index}. Date: {expense['date']} | "
+        f"Amount: ${expense['amount']:.2f} | "
+        f"Category: {expense['category']} | "
+        f"Description: {expense['description']}"
+    )
 
 
 def add_expense():
@@ -58,12 +67,7 @@ def view_expenses():
         return
 
     for index, expense in enumerate(expenses, start=1):
-        print(
-            f"{index}. Date: {expense['date']} | "
-            f"Amount: ${expense['amount']:.2f} | "
-            f"Category: {expense['category']} | "
-            f"Description: {expense['description']}"
-        )
+        print_expense(expense, index)
 
 
 def filter_by_category():
@@ -85,39 +89,34 @@ def filter_by_category():
         return
 
     for index, expense in enumerate(filtered_expenses, start=1):
-        print(
-            f"{index}. Date: {expense['date']} | "
-            f"Amount: ${expense['amount']:.2f} | "
-            f"Category: {expense['category']} | "
-            f"Description: {expense['description']}"
-        )
+        print_expense(expense, index)
 
 
-def filter_by_date():
-    print("\n--- Filter by Date ---")
+def filter_by_date_range():
+    print("\n--- Filter by Date Range ---")
 
     if not expenses:
         print("No expenses have been added.")
         return
 
-    search_date = get_valid_date()
+    start_date = get_valid_date("Enter start date (YYYY-MM-DD): ")
+    end_date = get_valid_date("Enter end date (YYYY-MM-DD): ")
+
+    if start_date > end_date:
+        print("Start date cannot be after end date.")
+        return
 
     filtered_expenses = [
         expense for expense in expenses
-        if expense["date"] == search_date
+        if start_date <= expense["date"] <= end_date
     ]
 
     if not filtered_expenses:
-        print("No expenses found for that date.")
+        print("No expenses found in that date range.")
         return
 
     for index, expense in enumerate(filtered_expenses, start=1):
-        print(
-            f"{index}. Date: {expense['date']} | "
-            f"Amount: ${expense['amount']:.2f} | "
-            f"Category: {expense['category']} | "
-            f"Description: {expense['description']}"
-        )
+        print_expense(expense, index)
 
 
 def view_summary():
@@ -152,7 +151,7 @@ def main_menu():
         print("1. Add Expense")
         print("2. View All Expenses")
         print("3. Filter by Category")
-        print("4. Filter by Date")
+        print("4. Filter by Date Range")
         print("5. View Expense Summary")
         print("6. Exit")
 
@@ -165,7 +164,7 @@ def main_menu():
         elif choice == "3":
             filter_by_category()
         elif choice == "4":
-            filter_by_date()
+            filter_by_date_range()
         elif choice == "5":
             view_summary()
         elif choice == "6":
