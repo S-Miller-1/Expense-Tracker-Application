@@ -1,26 +1,46 @@
-# C++ Version - Expense Tracker Application
 
-## Overview
+## C++ README update
 
-This is the C++ implementation of the Expense Tracker Application. It allows the user to add, view, filter, and summarize personal expenses through a console-based menu.
+```markdown
+# Expense Tracker Application - C++ Version
+
+This is the C++ implementation of the Team 2 Expense Tracker Application. The program allows users to record, view, categorize, filter, and summarize personal expenses using a console-based menu.
 
 ## Features
 
-- Add an expense
+- Add a new expense
 - View all expenses
 - Filter expenses by category
-- Filter expenses by date
-- View a summary of expenses
-- Exit the application
+- Filter expenses by date range
+- View an expense summary
+- Calculate overall total expenses
+- Calculate total expenses by category
+- Validate date format, amount input, and menu choices
 
-## Language-Specific Features Demonstrated
+## Expense Fields
 
-- Structs are used to define a strongly typed expense record.
-- STL vectors are used to store multiple expenses.
-- STL maps are used to calculate totals by category.
-- Strong typing is used for variables and functions.
-- Regex validation is used to check date format.
-- Input validation is included for menu choices and expense amounts.
+Each expense includes:
+
+- Date
+- Amount
+- Category
+- Description
+
+## Language-Specific Features Used
+
+This version demonstrates C++-specific features including:
+
+- A `struct` to define the Expense data model
+- A `vector` to store multiple expense records
+- A `map` to calculate totals by category
+- Strong typing for variables and function parameters
+- STL containers
+- Input validation using `cin.fail()`
+- Regular expressions for date format validation
+
+## Recent Deliverable 2 Update
+
+The date filtering feature was updated to support date range filtering. Users can now enter a start date and end date, and the program will display expenses that fall within that range.
 
 ## How to Compile and Run
 
