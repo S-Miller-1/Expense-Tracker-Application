@@ -23,11 +23,11 @@ bool isValidDate(const string& date) {
     return regex_match(date, datePattern);
 }
 
-string getValidDate() {
+string getValidDate(const string& prompt) {
     string date;
 
     while (true) {
-        cout << "Enter date (YYYY-MM-DD): ";
+        cout << prompt;
         getline(cin, date);
 
         if (isValidDate(date)) {
@@ -77,7 +77,7 @@ void addExpense() {
 
     Expense expense;
 
-    expense.date = getValidDate();
+    expense.date = getValidDate("Enter date (YYYY-MM-DD): ");
     expense.amount = getValidAmount();
 
     cout << "Enter category: ";
@@ -135,21 +135,27 @@ void filterByCategory() {
     }
 }
 
-void filterByDate() {
-    cout << "\n--- Filter by Date ---" << endl;
+void filterByDateRange() {
+    cout << "\n--- Filter by Date Range ---" << endl;
 
     if (expenses.empty()) {
         cout << "No expenses have been added." << endl;
         return;
     }
 
-    string date = getValidDate();
+    string startDate = getValidDate("Enter start date (YYYY-MM-DD): ");
+    string endDate = getValidDate("Enter end date (YYYY-MM-DD): ");
+
+    if (startDate > endDate) {
+        cout << "Start date cannot be after end date." << endl;
+        return;
+    }
 
     bool found = false;
     int count = 1;
 
     for (const Expense& expense : expenses) {
-        if (expense.date == date) {
+        if (expense.date >= startDate && expense.date <= endDate) {
             printExpense(expense, count);
             count++;
             found = true;
@@ -157,7 +163,7 @@ void filterByDate() {
     }
 
     if (!found) {
-        cout << "No expenses found for that date." << endl;
+        cout << "No expenses found in that date range." << endl;
     }
 }
 
@@ -193,7 +199,7 @@ void mainMenu() {
         cout << "1. Add Expense" << endl;
         cout << "2. View All Expenses" << endl;
         cout << "3. Filter by Category" << endl;
-        cout << "4. Filter by Date" << endl;
+        cout << "4. Filter by Date Range" << endl;
         cout << "5. View Expense Summary" << endl;
         cout << "6. Exit" << endl;
         cout << "Choose an option: ";
@@ -220,7 +226,7 @@ void mainMenu() {
                 filterByCategory();
                 break;
             case 4:
-                filterByDate();
+                filterByDateRange();
                 break;
             case 5:
                 viewSummary();
